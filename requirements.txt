@@ -1,0 +1,9 @@
+numpy
+Pillow
+qrcode
+ecdsa
+mnemonic
+bech32
+bip-utils
+coincurve
+base58
