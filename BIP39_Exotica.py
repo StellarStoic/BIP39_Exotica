@@ -36,19 +36,19 @@ wordlist_path = 'WRDL/nonStandard/slovenian.txt'
 # wordlist_path = 'WRDL/exotic/dominoesWRDL.txt'
 
 #For custom mnemonics recovery we need coresponding custom wordlists which should also be set to True.
-CUSTOM_MNEMONIC = True # If GENERATE_BY_COLOR = True, the custom_mnemonic_text will be ignored
+CUSTOM_MNEMONIC = False # If GENERATE_BY_COLOR = True, the custom_mnemonic_text will be ignored
 CUSTOM_WORDLIST = True  # Set to True if using a custom wordlistabandon abandon
 
 custom_mnemonic_text = "abeceda abeceda abeceda abeceda abeceda abeceda abeceda abeceda abeceda abeceda abeceda ajda" if CUSTOM_MNEMONIC else None
 
 # ********* COLORS SETTINGS ************
-GENERATE_BY_COLOR = True # Colors will always overide custom_mnemonic_text if CUSTOM_MNEMONIC=True
+GENERATE_BY_COLOR = False # Colors will always overide custom_mnemonic_text if CUSTOM_MNEMONIC=True
 
 #
 # Chose 8 or 16 HEX color values like #9EB70E #6A5E9A #7A8EA3...
 # The same mnemonic will be produced no matter the colors value order
 
-create_wallet_from_colors = "#022544 #2AB9C1 #3D6FC3 #5FFCBE #7B45DF #A4834C #B7546D #D704A8"
+create_wallet_from_colors = "#022544 #2AB9C1 #3D0FC3 #5FFCBE #7B45DF #A4834C #B7546D #D704A8"
 # *****************************
 
 timestamp = datetime.datetime.now().strftime("%d_%m_%Y_%H-%M-%S")
@@ -628,7 +628,7 @@ def display_wallet_info(mnemonic_phrase, seed, bip32, entropy, path_suffix, word
         # Display word indexes if available
         if custom_mnemonic and word_indexes:
             print(f"\n{Style.ITALIC}Word Indexes Used (Using Custom Wordlist: {wordlist_filename}){Style.RESET}: {Fore.MAGENTA}{word_indexes}{Fore.RESET}\n")
-            print(f"{Style.ITALIC}{Fore.YELLOW}Remember that when going trough the list of words, word index starts with 0 not 1. First word Abandon is at index 0. Just a note to avoid any further confusion.{Style.RESET}{Fore.RESET}\n\n")
+            print(f"{Style.ITALIC}{Fore.YELLOW}Remember that when going trough the list of words, word index starts with 0 not 1. We always count first word with 0. That's how computers count numbers. Just a note to avoid any further confusion.{Style.RESET}{Fore.RESET}\n\n")
             
             # Calculate and display the hash of the wordlist file if it's a custom wordlist
             if wordlist_filename:  # Ensure the wordlist filename is not None
@@ -641,7 +641,7 @@ def display_wallet_info(mnemonic_phrase, seed, bip32, entropy, path_suffix, word
             if wordlist:
                 word_indexes = [wordlist.index(word) for word in mnemonic_phrase.split()]
                 print(f"\n{Style.ITALIC}Word Indexes (Using Custom Wordlist: {wordlist_filename}){Style.RESET}: {Fore.MAGENTA}{word_indexes}{Fore.RESET}\n")
-                print(f"{Style.ITALIC}{Fore.YELLOW}Remember that when going trough the list of words, word index starts with 0 not 1. First word Abandon is at index 0. Just a note to avoid any further confusion.{Style.RESET}{Fore.RESET}\n\n")
+                print(f"{Style.ITALIC}{Fore.YELLOW}Remember that when going trough the list of words, word index starts with 0 not 1. We always count first word with 0. That's how computers count numbers. Just a note to avoid any further confusion.{Style.RESET}{Fore.RESET}\n\n")
 
                 # Calculate and display the hash of the wordlist file if it's a custom wordlist
                 if wordlist_filename:  # Ensure the wordlist filename is not None
@@ -652,7 +652,7 @@ def display_wallet_info(mnemonic_phrase, seed, bip32, entropy, path_suffix, word
                 mnemonic_instance = Mnemonic(language)
                 word_indexes = [mnemonic_instance.wordlist.index(word) for word in mnemonic_phrase.split()]
                 print(f"\n{Style.ITALIC}Word Indexes (Standard Wordlist: {language}){Style.RESET}: {Fore.MAGENTA}{word_indexes}{Fore.RESET}\n")
-                print(f"{Style.ITALIC}{Fore.YELLOW}Remember that when going trough the list of words, word index starts with 0 not 1. First word Abandon is at index 0. Just a note to avoid any further confusion.{Style.RESET}{Fore.RESET}\n\n")
+                print(f"{Style.ITALIC}{Fore.YELLOW}Remember that when going trough the list of words, word index starts with 0 not 1. We always count first word with 0. That's how computers count numbers. Just a note to avoid any further confusion.{Style.RESET}{Fore.RESET}\n\n")
             
         # Display word details using the raw binary
         words = mnemonic_phrase.split()
@@ -773,8 +773,8 @@ def generate_txt(mnemonic_phrase, seed, bip32, entropy, path_suffix, wordlist=No
             file.write("-------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n\n")
             # Display Word Indexes if applicable
             if custom_mnemonic and word_indexes:
-                file.write(f"Word Indexes: (Using Custom Wordlist: {wordlist_filename} was used to generate this mnemonic phrase): {word_indexes}\n")
-                file.write(f"Remember that when going trough the list of words, word index starts with 0 not 1. First word Abandon is at index 0. Just a note to avoid any further confusion.\n")
+                file.write(f"Word Indexes: (Using Custom Wordlist: {wordlist_filename} was used to generate this mnemonic phrase):\n{word_indexes}\n")
+                file.write(f"Remember that when going trough the list of words, word index starts with 0 not 1. We always count first word with 0. That's how computers count numbers. Just a note to avoid any further confusion.\n")
 
                 
                 # Calculate the hash of the wordlist file if it's a custom wordlist
@@ -790,8 +790,8 @@ def generate_txt(mnemonic_phrase, seed, bip32, entropy, path_suffix, wordlist=No
                 
             elif wordlist:
                 word_indexes = [wordlist.index(word) for word in mnemonic_phrase.split()]
-                file.write(f"Word Indexes (Using Custom Wordlist: {wordlist_filename} was used to generate this mnemonic phrase): {word_indexes}\n")
-                file.write(f"Remember that when going trough the list of words, word index starts with 0 not 1. First word Abandon is at index 0. Just a note to avoid any further confusion.\n\n")
+                file.write(f"Word Indexes (Using Custom Wordlist: {wordlist_filename} was used to generate this mnemonic phrase):\n{word_indexes}\n")
+                file.write(f"Remember that when going trough the list of words, word index starts with 0 not 1. We always count first word with 0. That's how computers count numbers. Just a note to avoid any further confusion.\n\n")
                 
                 # Calculate the hash of the wordlist file if it's a custom wordlist
                 if wordlist_filename:  # Ensure the wordlist filename is not None
@@ -801,7 +801,7 @@ def generate_txt(mnemonic_phrase, seed, bip32, entropy, path_suffix, wordlist=No
             else:
                 try:
                     word_indexes = [Mnemonic(language).wordlist.index(word) for word in mnemonic_phrase.split()]
-                    file.write(f"Word Indexes (Standard Wordlist: {language} was used to generate this mnemonic phrase): {word_indexes}\n\n")
+                    file.write(f"Word Indexes (Standard Wordlist: {language} was used to generate this mnemonic phrase):\n{word_indexes}\n\n")
                 except ValueError:
                     file.write("Words are not part of the standard BIP39 wordlist - Skipping Word Index Calculation\n\n")
                     
