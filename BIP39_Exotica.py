@@ -599,7 +599,7 @@ def display_wallet_info(mnemonic_phrase, seed, bip32, entropy, path_suffix, word
     
     print(f"\n... . -.-. .-. . - / -.. .- - .- / - --- / -.-- --- ..- .-. / - .-. ..- . / ..-. .-. . . -.. --- --\n")
     print(f"\n{Style.BOLD}{Fore.BLUE}BIP39_Exotica data created ->{Fore.RESET} {timestamp}{Style.RESET}\n")
-    print(f"{Style.ITALIC}{Fore.GREEN}You can get a decent explanation of what this project is, on my Github -> https://github.com{Fore.RESET}{Style.RESET}")
+    print(f"{Style.ITALIC}{Fore.GREEN}You can get a decent explanation of what this project is, on my Github -> https://github.com/StellarStoic/BIP39_Exotica{Fore.RESET}{Style.RESET}")
 
     
     # Generate colors from the mnemonic phrase
